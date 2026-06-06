@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vidarbha Holiday Tours</title>
+  <meta name="description" content="Explore Vidarbha, the green heart of Maharashtra. Discover details, tourist attractions, temples, weather, maps, and travel tips for all 12 districts." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Dot Background Grid -->
+  <div class="bg-dot-pattern"></div>
+
+  <!-- Header Navigation -->
+  <header class="navbar">
+    <div class="navbar-container">
+      <a href="#home" class="logo" id="nav-logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        <span>Vidarbha Tours</span>
+      </a>
+      
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+
+      <nav>
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#home" class="nav-item active" id="link-home">Home</a></li>
+          <li><a href="#project" class="nav-item" id="link-project">Project Info</a></li>
+          <li><a href="#about" class="nav-item" id="link-about">About Us</a></li>
+          <li><a href="#contact" class="nav-item" id="link-contact">Contact Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main View Frame -->
+  <main class="page-container">
+    
+    <!-- 1. HOME VIEW -->
+    <section id="view-home" class="view-section active">
+      <div class="hero">
+        <div class="hero-content">
+          <div class="hero-meta">
+            <span class="badge">Vidarbha Tourism</span>
+            <span class="badge" id="hero-meta-market">Focus: India</span>
+          </div>
+          <h1 id="hero-title">Vidarbha Holiday Tours</h1>
+          <p class="hero-subtitle" id="hero-subtitle">Explore the green capital, ancient forts, rich sanctuaries, and cultural legacy of eastern Maharashtra's 12 unique districts.</p>
+          <div class="hero-actions">
+            <a href="#project" class="btn btn-primary">Read Project Info</a>
+            <a href="data/districts.json" download class="btn btn-secondary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              Download JSON
+            </a>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-overlay-card">
+            <h3 id="hero-visual-val">12</h3>
+            <p>Districts to Explore</p>
+            <div class="hero-stats">
+              <div>
+                <span class="stat-val" id="stat-parks">15+</span>
+                <span class="stat-lbl">Sanctuaries</span>
+              </div>
+              <div>
+                <span class="stat-val" id="stat-forts">8+</span>
+                <span class="stat-lbl">Historic Forts</span>
+              </div>
+              <div>
+                <span class="stat-val" id="stat-lakes">50+</span>
+                <span class="stat-lbl">Lakes & Waterfalls</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Explorer Filters -->
+      <div class="explorer-bar">
+        <div class="search-wrapper">
+          <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" id="search-districts" class="search-input" placeholder="Search by district name, attractions, languages, or climate..." aria-label="Search districts" />
+        </div>
+        <div class="filter-chips" id="filter-chips">
+          <button class="filter-chip active" data-filter="all">All Districts</button>
+          <button class="filter-chip" data-filter="tropical">Tropical Climate</button>
+          <button class="filter-chip" data-filter="lakes">Rice & Lakes</button>
+          <button class="filter-chip" data-filter="wildlife">Sanctuaries & Tigers</button>
+        </div>
+      </div>
+
+      <!-- Districts Cards Grid -->
+      <div class="districts-grid" id="districts-grid">
+        <!-- Rendered dynamically by script.js -->
+        <div class="loading-state">
+          <p>Loading Vidarbha districts explorer...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. DISTRICT DETAIL VIEW -->
+    <section id="view-district" class="view-section">
+      <div class="back-btn" id="btn-back-home">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        <span>Back to Home</span>
+      </div>
+
+      <div class="detail-layout" id="district-detail-container">
+        <!-- Rendered dynamically by script.js -->
+      </div>
+    </section>
+
+    <!-- 3. PROJECT INFO VIEW -->
+    <section id="view-project" class="view-section">
+      <h2 style="margin-bottom: 30px;">Project Documentation</h2>
+      <div class="project-layout">
+        <aside class="project-sidebar">
+          <h3>Contents</h3>
+          <nav class="project-nav" id="project-nav" aria-label="Project documentation sections">
+            <!-- Loaded dynamically from project.json -->
+          </nav>
+        </aside>
+        
+        <div class="project-content-card" id="project-content-card">
+          <!-- Loaded dynamically from project.json -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. ABOUT US VIEW -->
+    <section id="view-about" class="view-section">
+      <div class="about-card">
+        <h2>About Vidarbha Tourism</h2>
+        <p style="margin-top: 24px;">The Vidarbha Holiday Tours website is designed to catalog, map, and describe the 12 rich districts composing the Vidarbha region of Maharashtra State, India.</p>
+        <p>Our platform provides structured, convenient travel packages and critical logistical details to ensure tourists can enjoy exploring the region without the stress of independent travel planning.</p>
+        <p>From historical highlights like the ancient Narnala and Gavilgad forts to coffee estates in Chikhaldara, tiger reserves in Melghat, and spiritual spots like Deekshabhoomi, we showcase the very best the region has to offer.</p>
+        <div style="margin-top: 32px; display: flex; gap: 16px; flex-wrap: wrap;">
+          <span class="badge">12 Districts</span>
+          <span class="badge">Comprehensive Coverage</span>
+          <span class="badge">Local Travel Expertise</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CONTACT US VIEW -->
+    <section id="view-contact" class="view-section">
+      <div class="contact-card">
+        <h2>Contact Us</h2>
+        <p style="margin-top: 12px; margin-bottom: 32px;">Have questions about customized tour packages or need assistance with your Vidarbha itinerary? Get in touch with us.</p>
+        
+        <div class="contact-grid">
+          <div class="contact-info-list">
+            <div class="contact-info-card">
+              <div class="contact-info-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </div>
+              <div class="contact-info-text">
+                <h4>Email Address</h4>
+                <p>RBcollege@gmail.com</p>
+              </div>
+            </div>
+            
+            <div class="contact-info-card">
+              <div class="contact-info-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <div class="contact-info-text">
+                <h4>Institution</h4>
+                <p>RB Mahavidyalaya, Umred</p>
+              </div>
+            </div>
+          </div>
+
+          <form class="contact-form" id="contact-form">
+            <div class="form-group">
+              <label for="contact-name">Full Name</label>
+              <input type="text" id="contact-name" class="form-input" placeholder="Mansi Dhore" required />
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email Address</label>
+              <input type="email" id="contact-email" class="form-input" placeholder="name@example.com" required />
+            </div>
+            <div class="form-group form-group-full">
+              <label for="contact-subject">Subject</label>
+              <input type="text" id="contact-subject" class="form-input" placeholder="Package Booking Inquiry" required />
+            </div>
+            <div class="form-group form-group-full">
+              <label for="contact-message">Your Message</label>
+              <textarea id="contact-message" class="form-textarea" placeholder="Hello, I would like to book a custom Vidarbha wildlife sanctuary package..." required></textarea>
+            </div>
+            
+            <div class="form-message" id="form-status-msg"></div>
+            
+            <button type="submit" class="btn btn-terracotta form-submit-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Persistent Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <p class="footer-text">&copy; 2026 Vidarbha Holiday Tours. Managed by RandhirSingh Bhadoriya Mahavidyalaya, Umred.</p>
+      <ul class="footer-links">
+        <li><a href="data/project.json" download>Project JSON</a></li>
+        <li><a href="data/project.xlsx" download>Project XLSX</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <noscript>
+    <div style="padding: 24px; text-align: center; background-color: var(--secondary-light); color: var(--secondary);">
+      <h3>JavaScript Required</h3>
+      <p>This interactive web app loads travel data dynamically. Please enable JavaScript in your browser settings to explore the districts.</p>
+    </div>
+  </noscript>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
